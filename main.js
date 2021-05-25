@@ -1,41 +1,49 @@
-var name_of_the_students_array=[];
+var name_of_guests_array=[];
 function submit() {
-    var display_students_array=[];
-    for(var j=1;j<=4;j++) {
-        var name_of_the_student=document.getElementById("name_of_the_student_"+j).value;
-        console.log(name_of_the_student);
-        name_of_the_students_array.push(name_of_the_student);
-    }
-    console.log(name_of_the_students_array);
-    length_of_name_of_the_students_array=name_of_the_students_array.length;
-    for(var k=0;k<length_of_name_of_the_students_array;k++) {
-        display_students_array.push("<h4>Name : "+name_of_the_students_array[k]+"</h4>");
-        console.log(display_students_array);
-    }
-    console.log(display_students_array);
-    document.getElementById("display_name_with_commas").innerHTML=display_students_array;
-
-    var remove_commas=display_students_array.join(" ");
-    console.log(remove_commas);
-    document.getElementById("display_name_without_commas").innerHTML=remove_commas;
-    document.getElementById("submit_button").style.display="none";
-    document.getElementById("sort_button").style.display="inline-block";
+    var name_of_guest=document.getElementById("input_name").value;
+    name_of_guests_array.push(name_of_guest);
+    document.getElementById("list_of_names_horizontal").style.display="inline-block";
+    document.getElementById("list_of_names_horizontal").innerHTML=name_of_guests_array;
 }
-function sorting() {
-    name_of_the_students_array.sort();
-    console.log(name_of_the_students_array);
-    
-    var length_of_name_of_the_students_array=name_of_the_students_array.length;
-    var display_name_of_the_students=[];
-    for(var i=0;i<length_of_name_of_the_students_array;i++) {
-        display_name_of_the_students.push("<h4>Name : "+name_of_the_students_array[i]+"</h4>");
-        console.log(display_name_of_the_students);
+function show() {
+    var display_list_of_names=[];
+    var length_of_name_of_guests_array=name_of_guests_array.length;
+    console.log(length_of_name_of_guests_array);
+    for (var i=0;i<length_of_name_of_guests_array;i++) {
+        display_list_of_names.push("<p>"+name_of_guests_array[i]+"</p>");
+        console.log(display_list_of_names);
     }
-    console.log(display_name_of_the_students);
-    var remove_commas=display_name_of_the_students.join(" ");
-    console.log(remove_commas);
-    document.getElementById("display_name_without_commas").innerHTML=remove_commas;
+    console.log(display_list_of_names);
+    var remove_commas=display_list_of_names.join(" ");
+    document.getElementById("list_of_names_vertical").style.display="inline-block";
+    document.getElementById("button_sort").style.display="inline-block";
+    document.getElementById("list_of_names_vertical").innerHTML=remove_commas;
 }
-function update() {
-    document.getElementById("display_name_without_commas").innerHTML="<h1>"+name_of_the_students_array+"</h1>";
+function sort_list() {
+    var display_list_of_names=[];
+    name_of_guests_array.sort();
+    var length_of_name_of_guests_array=name_of_guests_array.length;
+    console.log(length_of_name_of_guests_array);
+    for (var j=0;j<length_of_name_of_guests_array;j++) {
+        display_list_of_names.push("<p>"+name_of_guests_array[j]+"</p>");
+        console.log(display_list_of_names);
+    }
+    console.log(display_list_of_names);
+    var remove_commas=display_list_of_names.join(" ");
+    document.getElementById("list_of_names_sorted").style.display="inline-block";
+    document.getElementById("list_of_names_sorted").innerHTML=remove_commas;
+}
+function search() {
+    var s=document.getElementById("find_name_input").value;
+    var found=0;
+    for (var k=0;k<name_of_guests_array.length;k++) {
+        if (s==name_of_guests_array[k]){
+            found=found+1;
+        }
+    }
+    document.getElementById("name_found_label").style.display="inline-block";
+    document.getElementById("find_name_input").style.display="none";
+    document.getElementById("search_button").style.display="none";
+    document.getElementById("name_found_label").innerHTML="name found "+found+" time/s";
+    console.log("name found"+found+"time/s");
 }
